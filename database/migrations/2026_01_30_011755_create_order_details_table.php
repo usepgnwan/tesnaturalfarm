@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
             $table->integer('order_id')
-                    ->unique()  
                     ->constrained('orders')
                     ->cascadeOnDelete();
-             $table->integer('product_id')
-                    ->unique()  
+             $table->integer('product_id') 
                     ->constrained('orders')
                     ->cascadeOnDelete();
             $table->integer("qty");

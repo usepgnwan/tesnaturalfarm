@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Box, Folder, LayoutGrid, ShoppingCart } from 'lucide-vue-next';
+import { BookOpen, Box, Folder, HistoryIcon, LayoutGrid, ShoppingCart } from 'lucide-vue-next';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
@@ -13,7 +13,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
+import { dashboard, orders } from '@/routes';
 import { type NavItem } from '@/types';
 import AppLogo from './AppLogo.vue';
 import post from '@/routes/post';
@@ -35,20 +35,14 @@ const mainNavItems: NavItem[] = [
         href: post.index(),
         icon: ShoppingCart,
     },
+    {
+        title: 'History Orders',
+        href: orders(),
+        icon: HistoryIcon,
+    },
 ];
 
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Github Repo',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
-    },
-];
+ 
 </script>
 
 <template>
@@ -69,8 +63,7 @@ const footerNavItems: NavItem[] = [
             <NavMain :items="mainNavItems" />
         </SidebarContent>
 
-        <SidebarFooter>
-            <NavFooter :items="footerNavItems" />
+        <SidebarFooter> 
             <NavUser />
         </SidebarFooter>
     </Sidebar>

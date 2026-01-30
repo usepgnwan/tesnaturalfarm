@@ -6,6 +6,7 @@ use App\Http\Controllers\Settings\TwoFactorAuthenticationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Post;
 use App\Http\Controllers\Product;
+use App\Http\Controllers\Order;
 use Inertia\Inertia;
 
 Route::middleware(['auth'])->group(function () {
@@ -33,5 +34,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('post', Post::class);
     Route::resource('product', Product::class);
+    Route::get('history/order', [Order::class, 'index'])->name('orders');
 
 });

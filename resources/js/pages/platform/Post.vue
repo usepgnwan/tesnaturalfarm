@@ -77,10 +77,12 @@ watch(search,async (val) => {
                                     <p class="line-clamp-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
                                     <div class="flex justify-between">
                                         <p> Rp . 500.000</p>
-                                        <div class="flex gap-1">
-                                            <div class="border rounded-2xl px-1">+</div>
-                                            <div class="border rounded-2xl px-1">1</div>
-                                            <div class="border rounded-2xl px-1">-</div>
+                                        <div>
+                                            <div class="flex gap-1">
+                                                <button class="border rounded-md px-2 bg-blue-500 text-white cursor-pointer">-</button>
+                                                <div class="border rounded-md px-2 bg-gray-50">1</div>
+                                                <button class="border rounded-md px-2 bg-blue-500 text-white cursor-pointer">+</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

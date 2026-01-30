@@ -230,9 +230,7 @@ const handleUpload: UploadProps['onChange'] = (file) => {
                             :rules="rules"
                             label-width="auto"
                             class="demo-ruleForm"
-                        >
-                            
-                           
+                        > 
                             <el-form-item label="Title" prop="title" >
                                 <el-input v-model.number="ruleForm.title" />
                             </el-form-item>

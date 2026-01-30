@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 import { PropType } from 'vue';
@@ -30,7 +29,10 @@ import { PropType } from 'vue';
         <p class="line-clamp-1">{{ data.title }}  </p>
         <small>Stock : {{ data.stock }}</small>
         <h5 class="font-semibold">Rp.{{ data.harga }}</h5>
-        <button class="bg-blue-400 p-2 text-white rounded-2xl w-full hidden group-hover:block">Tambah</button>
+  
+            <button class="bg-blue-400 p-2 text-white rounded-2xl w-full cursor-pointer" v-if="data.stock > 0">Tambah</button>
+            <button class="bg-gray-200 p-2 text-gray-500 rounded-2xl w-full"  v-else>Habis</button>
+        
 
     </div>
 </template>

@@ -132,7 +132,7 @@ const sendData = () =>{
                         
                         <p class="font-semibold">Total Produk ({{ datacart.length }})</p>
                         <div class="h-64 overflow-y-auto">
-                            <CardCard v-for="(value,k) in datacart" :key="k" :data="value"/>
+                            <CardCard v-for="(value,k) in datacart" :key="k" :data="value" @add-cart="updatecart"/>
                         </div>
                         <div>
                             <p>Potongan harga</p>

@@ -2,8 +2,8 @@
 import { useGlobal } from '@/lib/global';
 import { datacart } from '@/lib/interface';
 import Storage from '@/lib/storage';
-import { Icon } from '@iconify/vue';
-import { PropType } from 'vue';
+import { Icon } from '@iconify/vue'; 
+import { PropType, ref } from 'vue';
 import { toast } from 'vue-sonner';
 
 const emit = defineEmits(['add-cart']);
@@ -12,6 +12,53 @@ const props = defineProps({
     data: { type: Object as PropType<datacart>, default: () => ({}) }, 
 });
 const {toRupiah} = useGlobal()
+
+     
+const qty = ref<Number>(props.data.total) 
+
+const increment = () => {
+    qty.value = Number(qty.value) + 1 
+    addCart(  false)
+    
+};
+
+const decrement = () => {
+    qty.value= Number(qty.value) - 1 
+    addCart( true)
+    
+}; 
+const addCart = (isdecrement : boolean) => {
+    const qtyToAdd = qty.value;
+
+    let cart = Storage.get("cart-detail", []);
+
+    const index = cart.findIndex((item: any) => item.id === props.data.id);
+   
+    if (index !== -1) {
+        if(isdecrement){
+            cart[index].total -= 1;
+            if(cart[index].total === 0){
+                const newCart = cart.filter((item: any) => item.total > 0);  
+                Storage.set("cart-detail", newCart);
+                emit('add-cart'); 
+                return;
+            }
+        }else{
+            cart[index].total  = qtyToAdd;
+            if(cart[index].total >= props.data?.data.stock){
+                return toast.warning('Melebihi stok')
+            }
+        }
+    }  
+    
+    Storage.set("cart-detail", cart);
+    console.log(cart);
+    toast.success('Sukses update cart pesanan')
+    
+    emit('add-cart');
+    
+};
+ 
 </script>
 <template>
     <div class="flex space-x-1.5 space-y-2.5" >
@@ -30,9 +77,9 @@ const {toRupiah} = useGlobal()
                 <p> Rp . {{ toRupiah(data.harga) }}</p>
                 <div>
                     <div class="flex gap-1">
-                        <button class="border rounded-md px-2 bg-blue-500 text-white cursor-pointer">-</button>
+                        <button class="border rounded-md px-2 bg-blue-500 text-white cursor-pointer" @click="decrement">-</button>
                         <div class="border rounded-md px-2 bg-gray-50">{{ data.total }}</div>
-                        <button class="border rounded-md px-2 bg-blue-500 text-white cursor-pointer">+</button>
+                        <button class="border rounded-md px-2 bg-blue-500 text-white cursor-pointer" @click="increment">+</button>
                     </div>
                 </div>
             </div>

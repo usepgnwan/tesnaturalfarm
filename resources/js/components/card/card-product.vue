@@ -18,7 +18,7 @@ import { toast } from 'vue-sonner';
         const index = cart.findIndex((item: any) => item.id === props.data.id);
 
         if (index !== -1) { 
-                if(cart[index].total > props.data.stock){
+                if(cart[index].total >= props.data.stock){
                     return toast.warning('Melebihi stok')
                 }
                 cart[index].total += 1; 

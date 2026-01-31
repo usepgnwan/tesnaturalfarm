@@ -111,7 +111,7 @@ const sendData = () =>{
              <section class="flex space-x-3 px-4 bg-gray-50">
                 <div class="w-2/3  p-4 space-y-6">
                         <div class="relative">
-                            <input type="number" class="w-full p-2 border  rounded-2xl bg-white px-10" placeholder="Cari..." v-model="search"/>
+                            <input  class="w-full p-2 border  rounded-2xl bg-white px-10" placeholder="Cari..." v-model="search"/>
                             <Icon icon="wordpress:search" class="absolute left-4 -translate-y-1/2 top-1/2 w-5 h-5"/>
                         </div>
                         <template v-if="data?.data.length>0">
@@ -136,7 +136,7 @@ const sendData = () =>{
                         </div>
                         <div>
                             <p>Potongan harga</p>
-                            <input  class="border rounded-xl mt-2 p-1 w-full px-4" placeholder="diskon 10.000" v-model="diskon"/>
+                            <input type="number" class="border rounded-xl mt-2 p-1 w-full px-4" placeholder="diskon 10.000" v-model="diskon"/>
                         </div>
                         <div class="bg-gray-50 space-y-2.5 p-2">
                             <div class="flex justify-between">

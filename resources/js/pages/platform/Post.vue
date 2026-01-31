@@ -72,8 +72,7 @@ onMounted(()=>{
 })
 
 
-watch(()=>diskon, ()=>{
-    console.log('dd')
+watch(()=>diskon, ()=>{ 
     updateTotal()
 }, {
      deep: true

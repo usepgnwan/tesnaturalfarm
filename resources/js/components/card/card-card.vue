@@ -43,9 +43,11 @@ const addCart = (isdecrement : boolean) => {
                 emit('add-cart'); 
                 return;
             }
+            cart[index].harga = Number(cart[index].total) * Number(cart[index].data.harga) 
         }else{
             cart[index].total  = qtyToAdd;
-            if(cart[index].total >= props.data?.data.stock){
+            cart[index].harga = Number(cart[index].total) * Number(cart[index].data.harga) 
+            if(Number(qtyToAdd) >  props.data?.data.stock){
                 return toast.warning('Melebihi stok')
             }
         }

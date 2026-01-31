@@ -2,7 +2,7 @@ TES NATURAL FARM
 link akses : https://naturalfarm.usepgnwan.my.id/
 USER AKSES 
 ```
-email : admin@naturalfarm.com
+email : superadmin@naturalfarm.com
 password : password
 ```
 Hasil :

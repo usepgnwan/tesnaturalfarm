@@ -130,8 +130,8 @@ watch(per_page,async (val) => {
                             <template v-if="data.data.length >0">
                                 <template v-for="(item, index) in data.data" :key="index">
 
-                                    <tr class="bg-neutral-primary border-b border-default" >  
-                                            <td class="px-6 py-4" :rowspan="item.details.length +1">
+                                    <tr class="bg-neutral-primary border-default" >  
+                                            <td class="px-6 py-4" >
                                                 {{ item.no_order }}
                                             </td> 
                                             <td class="px-6 py-4">
@@ -147,7 +147,7 @@ watch(per_page,async (val) => {
                                             <td class="px-6 py-4">{{ item.details.reduce((sum, v)=> sum+v.qty ,0) }} </td>
                                             <td class="px-6 py-4">{{formatDate(item.created_at)}}</td>
                                     </tr>
-                                    <tr >
+                                    <tr class=" border-b ">
                                         <td class="px-6 py-4 " colspan="7">
                                             <div class="space-y-1.5 border rounded-2xl p-3">
                                                 <p>Details Order</p> 

@@ -6,6 +6,7 @@ import '../css/app.css';
 import { initializeTheme } from './composables/useAppearance';
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import { Toaster } from 'vue-sonner'
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
@@ -19,6 +20,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ElementPlus)
+            .component('Toaster', Toaster)
             .mount(el);
     },
     progress: {

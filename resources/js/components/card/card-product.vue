@@ -1,19 +1,43 @@
-<script lang="ts" setup>
+<script lang="ts" setup> 
+import { product } from '@/lib/interface';
+import Storage from '@/lib/storage';
 import { Icon } from '@iconify/vue';
 import { PropType } from 'vue';
+import { toast } from 'vue-sonner';
+    const emit = defineEmits(['add-cart']);
 
-        interface product {
-            title : string
-            description : string
-            stock : number
-            harga: number
-            foto : string
-        }
-        const props = defineProps({
+    const props = defineProps({
+        
+        data: { type: Object as PropType<product>, default: () => ({}) },
             
-            data: { type: Object as PropType<product>, default: () => ({}) },
-             
-        });
+    });
+
+    const addProduct = () => {
+        let cart = Storage.get("cart-detail", [])
+        
+        const index = cart.findIndex((item: any) => item.id === props.data.id);
+
+        if (index !== -1) { 
+                if(cart[index].total > props.data.stock){
+                    return toast.warning('Melebihi stok')
+                }
+                cart[index].total += 1; 
+                cart[index].harga = cart[index].total * props.data?.harga
+                console.log(cart)
+        } else {
+            // add new item
+            cart.push({
+                id : props.data?.id,
+                total: 1,
+                harga: props.data?.harga,
+                data: props.data,
+            });
+        }
+
+    
+        Storage.set("cart-detail",cart)
+        emit('add-cart');
+    }
 </script>
 <template>
     <div class="border p-4 space-y-2.5 bg-white rounded-2xl group"   >
@@ -30,7 +54,7 @@ import { PropType } from 'vue';
         <small>Stock : {{ data.stock }}</small>
         <h5 class="font-semibold">Rp.{{ data.harga }}</h5>
   
-            <button class="bg-blue-400 p-2 text-white rounded-2xl w-full cursor-pointer" v-if="data.stock > 0">Tambah</button>
+            <button class="bg-blue-400 p-2 text-white rounded-2xl w-full cursor-pointer" v-if="data.stock > 0" @click="addProduct">Tambah</button>
             <button class="bg-gray-200 p-2 text-gray-500 rounded-2xl w-full"  v-else>Habis</button>
         
 
